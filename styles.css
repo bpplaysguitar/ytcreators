@@ -1,0 +1,307 @@
+/* styles */
+
+@font-face {
+  font-family: yoxall;
+  src: url(./fonts/yoxall_b.ttf);
+}
+
+:root {
+  font-size: 16px;
+  --dark001: #1a1b1c;
+  --light001: #fafcfe;
+  --red001: #ff5757;
+  --gradient001: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(26, 27, 28, 0.2) 60%,
+    rgba(26, 27, 28, 0.4) 90%
+  );
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--light001);
+  height: 100%;
+}
+
+.hamburger {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  background-color: var(--dark001);
+  border: none;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+}
+
+.hamburger:focus,
+.hamburger:active {
+  outline: 5px solid var(--red001);
+}
+
+.hamburger::after,
+.hamburger::before {
+  content: "";
+  height: 20px;
+  border-left: 1px solid var(--light001);
+  transform: rotate(90deg);
+  margin: -3px;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-active::after {
+  transform: rotate(135deg);
+}
+
+.hamburger-active::before {
+  transform: rotate(45deg);
+}
+
+.main-nav {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  /* center content horizontally */
+  align-items: center;
+  /* center content vertically */
+  justify-content: center;
+  height: 100%;
+  width: 40%;
+  background-color: var(--dark001);
+  /* move content off left side of screen */
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 5;
+}
+
+.main-nav-active {
+  /* move content back on screen for js to activate */
+  transform: translateX(0);
+}
+
+.main-nav a {
+  font-family: yoxall, sans-serif;
+  font-size: 3rem;
+  padding: 12px 0;
+  margin: 16px;
+  color: var(--light001);
+  text-decoration: none;
+  /* transparent border bottom, will be replaced on hover */
+  border-bottom: 1px solid transparent;
+  /* animate the border bottom */
+  transition: border-bottom 0.3s ease;
+}
+
+.main-nav a:hover {
+  border-bottom: 1px solid var(--light001);
+}
+.main-nav a:focus,
+.main-nav a:active {
+  outline: 5px solid var(--red001);
+}
+
+.home {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.home-info {
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.home-header {
+  max-width: 356px;
+  margin: 82px 0 16px 0;
+}
+
+.home-title {
+  font-family: yoxall, sans-serif;
+  font-size: 4.125rem;
+  color: var(--dark001);
+  line-height: 105%;
+  margin-bottom: 56px;
+}
+
+.home-spacer {
+  display: inline-block;
+  height: 1px;
+  width: 102px;
+  background-color: var(--dark001);
+  margin-bottom: 48px;
+}
+.home-subtext {
+  font-family: Open Sans, sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--dark001);
+
+  line-height: 165%;
+  margin-bottom: 48px;
+}
+
+.home-cta {
+  /* allow adding margin to top and bottom */
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  background-color: var(--dark001);
+  color: var(--light001);
+  /* radius the edges of border */
+  border-radius: 50px;
+  /* add a border to text */
+  border: 2px solid var(--dark001);
+  /* pad inside border - top/bottom left/right */
+  padding: 16px 48px;
+  /* set which properties will transition and how */
+  transition-property: background-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+.home-cta:hover {
+  /* set the new properties for when hovered, to go along with transition above */
+  background-color: var(--light001);
+  color: var(--dark001);
+}
+
+.home-cta:focus,
+.home-cta:active {
+  /* for accessibility */
+  background-color: var(--light001);
+  color: var(--dark001);
+  outline: 5px solid var(--red001);
+}
+
+.home-cards /* profile pictures */ {
+  /* start on grid column 2, end on column 3 */
+  grid-column: 2/3;
+  /* set up another grid within this grid   */
+  display: grid;
+  /* set up two columns, each using 1 fraction */
+  grid-template-columns: 1fr 1fr;
+  /* put space around the grid template */
+  padding: 8px;
+}
+
+.group-one /* left column */ {
+  /* start on grid column 1, span accross 1 column */
+  grid-column: 1 / span 1;
+  /* use flex within the grid of group one */
+  display: flex;
+  /* make columns in flex layout */
+  flex-direction: column;
+}
+
+.group-one .home-card-square
+/* first picture of group one */ {
+  /* put background image behind this home card */
+  background-image:
+  /*overlay gradient on top of background image*/ var(
+      --gradient001
+    ),
+    url(./images/michael1200.png);
+}
+
+.group-one .home-card-large {
+  background-image: var(--gradient001), url(./images/gob1200.png);
+}
+
+.home-card /* all profile pictures */ {
+  margin: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--dark001);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-card header img
+/* image within header within home card */ {
+  /* turn profile pictures into small circles */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.group-two {
+  /* start on column 2, span 1 column */
+  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-two .home-card-square {
+  /* put background image behind this home card */
+  background-image: var(--gradient001), url(./images/lindsay-large.jpg);
+}
+
+.group-two .home-card-large {
+  background-image: var(--gradient001), url(./images/buster-large.png);
+}
+
+.home-card header h3 a
+/*link within h3 within home card*/ {
+  font-family: yoxall, sans-serif;
+  font-size: 1rem;
+  color: var(--light001);
+  text-decoration: none;
+}
+
+.home-card-square {
+  /* trick to make them square */
+  height: 0;
+  padding-top: calc(100% - 32px);
+}
+
+.home-card-large {
+  /* tell flex to fill whatever space is available */
+  flex: auto;
+}
+
+@media screen and (max-width: 1300px), screen and (max-height: 800px) {
+  .main-nav {
+    width: 100%;
+  }
+
+  .home-info,
+  .home-cards {
+    grid-column: 1 / span 2;
+  }
+
+  .home-card-large {
+    height: 0;
+    padding-top: calc(100% - 32px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .group-one,
+  .group-two {
+    grid-column: 1 / span 2;
+  }
+}
